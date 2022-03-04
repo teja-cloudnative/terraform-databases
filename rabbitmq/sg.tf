@@ -1,6 +1,6 @@
 resource "aws_security_group" "allow-rabbitmq" {
-  name        = "mongodb-${var.ENV}-sg"
-  description = "mongodb-${var.ENV}-sg"
+  name        = "rabbitmq-${var.ENV}-sg"
+  description = "rabbitmq-${var.ENV}-sg"
   vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
 
   ingress {
