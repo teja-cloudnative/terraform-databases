@@ -10,10 +10,11 @@ module "rabbitmq" {
   RABBITMQ_INSTANCE_TYPE = var.RABBITMQ_INSTANCE_TYPE
 }
 
+module "mysql" {
+  source = "./mysql"
+  ENV    = var.ENV
+}
 
-#module "mysql" {
-#  source = "./mysql"
-#}
 #module "redis" {
 #  source = "./redis"
 #}

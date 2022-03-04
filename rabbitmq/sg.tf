@@ -12,7 +12,7 @@ resource "aws_security_group" "allow-rabbitmq" {
   }
 
   ingress {
-    description      = "mongodb"
+    description      = "rabbitmq"
     from_port        = 5672
     to_port          = 5672
     protocol         = "tcp"
