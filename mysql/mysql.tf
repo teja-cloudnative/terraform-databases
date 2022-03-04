@@ -9,7 +9,11 @@ resource "aws_db_instance" "default" {
   parameter_group_name   = "default.mysql5.7"
   skip_final_snapshot    = true
   db_subnet_group_name   = aws_db_subnet_group.mysql.name
-  vpc_security_group_ids = []
+  vpc_security_group_ids = [aws_security_group.allow-mysql.id]
+  tags                   =
+  {
+    Name = "mysql-${var.ENV}"
+  }
 }
 
 resource "aws_db_subnet_group" "mysql" {
