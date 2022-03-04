@@ -3,7 +3,7 @@ resource "aws_db_instance" "default" {
   engine                 = "mysql"
   engine_version         = "5.7"
   instance_class         = "db.t3.micro"
-  name                   = "mydb"
+  db_name                = "dummy"
   username               = jsondecode(data.aws_secretsmanager_secret_version.latest.secret_string)["RDS_USER"]
   password               = jsondecode(data.aws_secretsmanager_secret_version.latest.secret_string)["RDS_PASS"]
   parameter_group_name   = "default.mysql5.7"
