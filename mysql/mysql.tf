@@ -21,3 +21,14 @@ resource "aws_db_subnet_group" "mysql" {
   }
 }
 
+resource "null_resource" "schema" {
+  provisioner "local-exec" {
+    command = <<EOF
+curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
+cd /tmp
+unzip -o /tmp/mysql.zip
+cd mysql-main
+mysql -h ${aws_db_instance.default.address} -u${jsondecode(data.aws_secretsmanager_secret_version.latest.secret_string)["RDS_USER"]} -p${jsondecode(data.aws_secretsmanager_secret_version.latest.secret_string)["RDS_PASS"]} < shipping.sql
+EOF
+  }
+}
